@@ -4,8 +4,15 @@ const App = () => {
   const [loading , setLoading] = useState(false) 
   const [data , setData] = useState({}) 
   const [err , setErr] = useState(false) 
-  const handleRequest = () => {
+  const handleRequest = async() => {
     setLoading(true)
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts/1")
+    console.log(res.status);
+    if (res.status == 200) {
+      const data = await res.json()
+      setLoading(false)
+      setData(data)
+    }
   }
   return (
     <>
